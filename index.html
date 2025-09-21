@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diya Sarkar - Full Stack Web Developer Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS for Animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff007a;
+            --text-color: #e0e0e0;
+            --bg-color: #0a0a23;
+            --card-bg: #1a1a3d;
+            --shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+        [data-theme="light"] {
+            --primary-color: #007bff;
+            --secondary-color: #ff007a;
+            --text-color: #333;
+            --bg-color: #f4f4f9;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header {
+            position: fixed;
+            width: 100%;
+            background: rgba(10, 10, 35, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-color);
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .theme-toggle:hover {
+            color: var(--primary-color);
+        }
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color);
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 0;
+        }
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px var(--primary-color);
+            animation: fadeInDown 1s ease;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.5s;
+        }
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid var(--primary-color);
+            box-shadow: var(--shadow);
+            animation: zoomIn 1s ease;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+        }
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--secondary-color);
+        }
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            position: relative;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+        h2::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+        #about p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-align: center;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .skill-item {
+            background: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .skill-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+        .skill-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px var(--primary-color);
+        }
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: brightness(80%);
+            transition: filter 0.3s;
+        }
+        .project-card:hover img {
+            filter: brightness(100%);
+        }
+        .project-info {
+            padding: 20px;
+        }
+        .project-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        #contact input, #contact textarea {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            box-shadow: inset 0 0 5px rgba(0, 212, 255, 0.2);
+            transition: box-shadow 0.3s;
+        }
+        #contact input:focus, #contact textarea:focus {
+            outline: none;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+        #contact button {
+            padding: 12px;
+            background: var(--primary-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        #contact button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--secondary-color);
+        }
+        footer {
+            background: var(--card-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0, 212, 255, 0.2);
+        }
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <header>
+        <nav>
+            <div class="logo">Diya Sarkar</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <img src="https://avatars.githubusercontent.com/u/205523929?v=4" alt="Diya Sarkar's Photo" class="profile-photo">
+            <h1>Diya Sarkar - Innovate the Future</h1>
+            <p>Full Stack Web Developer crafting futuristic web experiences. Expertise in Node.js, MongoDB, React, and more. Passionate about sustainable and impactful solutions.</p>
+            <a href="#projects" class="btn">Explore Projects</a>
+        </div>
+    </section>
+
+    <section id="about" data-aos="fade-up">
+        <h2>About Me</h2>
+        <p>Hi, I'm Diya Sarkar, a passionate full stack web developer with a flair for creating innovative, user-centric applications. My coding journey began with mastering programming languages like C, Java, and Python, which fueled my expertise in building robust and scalable systems.</p>
+        <p>Education: I hold a degree in Computer Science, where I developed a strong foundation in algorithms, data structures, and software engineering principles.</p>
+        <p>Professional Experience: With hands-on experience in full stack development, I’ve built diverse projects, from rural tourism platforms to interactive games. I specialize in Node.js, MongoDB, and React, with a focus on integrating APIs for seamless functionality.</p>
+        <p>My mission is to bridge technology with real-world impact, empowering communities through sustainable solutions and immersive digital experiences. Check out my work on <a href="https://github.com/dironix" target="_blank">GitHub</a>.</p>
+    </section>
+
+    <section id="skills" data-aos="fade-up">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item" data-aos="zoom-in">
+                <i class="fas fa-stack-overflow"></i>
+                <h3>Full Stack Development</h3>
+            </div>
+            <div class="skill-item" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-database"></i>
+                <h3>MongoDB</h3>
+            </div>
+            <div class="skill-item" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fab fa-node-js"></i>
+                <h3>Node.js</h3>
+            </div>
+            <div class="skill-item" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fab fa-python"></i>
+                <h3>Python</h3>
+            </div>
+            <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fab fa-java"></i>
+                <h3>Java</h3>
+            </div>
+            <div class="skill-item" data-aos="zoom-in" data-aos-delay="500">
+                <i class="fas fa-code"></i>
+                <h3>C</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" data-aos="fade-up">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" data-aos="flip-left">
+                <img src="https://via.placeholder.com/400x200?text=GaoSathii" alt="GaoSathii">
+                <div class="project-info">
+                    <h3>Rural Tourism Platform (GaoSathii)</h3>
+                    <p>A digital platform to promote rural tourism, connecting travelers with authentic village experiences, homestays, local cuisine, and eco-friendly adventures.</p>
+                    <a href="https://github.com/dironix/GaoSathii" class="btn" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card" data-aos="flip-left" data-aos-delay="100">
+                <img src="https://via.placeholder.com/400x200?text=ShilpoKotha" alt="ShilpoKotha">
+                <div class="project-info">
+                    <h3>E-commerce for Rural Business (ShilpoKotha)</h3>
+                    <p>An e-commerce website built with React to promote rural businesses, featuring a modern frontend for showcasing products and facilitating sales.</p>
+                    <a href="https://github.com/dironix/ShilpoKotha" class="btn" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card" data-aos="flip-left" data-aos-delay="200">
+                <img src="https://via.placeholder.com/400x200?text=Tic-Tac-Toe" alt="Tic-Tac-Toe">
+                <div class="project-info">
+                    <h3>Tic-Tac-Toe Game</h3>
+                    <p>A simple Tic-Tac-Toe game with player vs player and AI modes, built using HTML, CSS, and JavaScript for interactive gameplay.</p>
+                    <a href="https://github.com/dironix/Tic-Tac-Toe" class="btn" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card" data-aos="flip-left" data-aos-delay="300">
+                <img src="https://via.placeholder.com/400x200?text=Weather+App" alt="Weather App">
+                <div class="project-info">
+                    <h3>Weather Application</h3>
+                    <p>An interactive weather app that fetches live data from OpenWeatherMap API, displaying temperature, conditions, humidity, and more.</p>
+                    <a href="https://github.com/dironix/Weather-Application" class="btn" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card" data-aos="flip-left" data-aos-delay="400">
+                <img src="https://via.placeholder.com/400x200?text=Stop+Watch" alt="Stop Watch">
+                <div class="project-info">
+                    <h3>Stop Watch</h3>
+                    <p>A stopwatch app with start, pause, reset, and lap tracking features, built with HTML, CSS, and JavaScript.</p>
+                    <a href="https://github.com/dironix/Stop-Watch" class="btn" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card" data-aos="flip-left" data-aos-delay="500">
+                <img src="https://via.placeholder.com/400x200?text=HTML+Portfolio" alt="HTML Portfolio">
+                <div class="project-info">
+                    <h3>HTML Portfolio</h3>
+                    <p>A personal portfolio website showcasing my skills and projects, built using HTML and CSS with a focus on clean design.</p>
+                    <a href="https://github.com/dironix/html-portfolio" class="btn" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" data-aos="fade-up">
+        <h2>Contact Me</h2>
+        <form action="#" method="post">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Diya Sarkar. All rights reserved.</p>
+    </footer>
+
+    <!-- AOS Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Theme Toggle Functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        body.setAttribute('data-theme', savedTheme);
+        themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>
